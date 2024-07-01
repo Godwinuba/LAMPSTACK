@@ -65,5 +65,33 @@ Now that you have a web server up and running, you need to install a Database Ma
 
 - When you’re finished, test if you’re able to log in to the MySQL console by typing:
  `sudo mysql -p`
+- To exit the MySQL console, type:
+mysql> `exit`
 
- 
+# STEP 4 — INSTALLING PHP
+PHP is the component of our setup that will process code to display dynamic content to the end user. In addition to the php package, you’ll need php-mysql, a PHP module that allows PHP to communicate with MySQL-based databases. You’ll also need libapache2-mod-php to enable Apache to handle PHP files.
+
+To install these 3 packages at once, run:
+`sudo apt install php libapache2-mod-php php-mysql`
+Once the installation is finished, you can run the following command to confirm your PHP version:
+`php -v`
+![php version](./iMAGES/php%20version.png)
+
+# STEP 5 — CREATING A VIRTUAL HOST FOR YOUR WEBSITE USING APACHE
+
+Apache on Ubuntu 20.04 has one server block enabled by default that is configured to serve documents from the /var/www/html directory. 
+We will leave this configuration as is and will add our own directory next next to the default one.
+Create the directory for projectlamp using ‘mkdir’ command as follows:
+`sudo mkdir /var/www/projectlamp`
+Next, assign ownership of the directory with your current system user:
+ `sudo chown -R $USER:$USER /var/www/projectlamp`
+ Then, create and open a new configuration file in Apache’s sites-available directory using your preferred command-line editor. Here, we’ll be using Nano
+ sudo nano /etc/apache2/sites-available/projectlamp.conf
+
+`sudo vi /etc/apache2/sites-available/projectlamp.conf`
+This will create a new blank file. Paste in the following bare-bones configuration by hitting on i on the keyboard to enter the insert mode, and paste the text.
+
+vim /var/www/projectlamp/index.php
+This will open a blank file. Add the following text, which is valid PHP code, inside the file:
+<?php
+phpinfo();
